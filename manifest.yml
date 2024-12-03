@@ -1,0 +1,14 @@
+---
+applications:
+- name: open-url
+  memory: 256M      # Adjust memory allocation for your application's needs
+  instances: 1      # The number of instances you want to start initially
+  path: .           # Path to your application files, '.' indicates the root of the app directory
+  buildpacks: 
+    - python_buildpack   # Specify the Python buildpack for your FastAPI app
+  env:
+    PYTHONUNBUFFERED: "true"   # This helps to log the python app output in real-time
+  health-check-type: process   # You can use 'process', 'port', or 'http' based on your preference
+  timeout: 180                 # Time (in seconds) for CF to wait for your app to start
+  random-route: true           # If true, CF assigns a random route to your app to avoid collisions
+  command: uvicorn main:app --host 0.0.0.0 --port $PORT  # Command to start your FastAPI app with Uvicorn

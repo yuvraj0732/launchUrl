@@ -1,0 +1,9 @@
+fastapi
+requests
+uvicorn[stanadard]
+pypdf
+langchain
+selenium
+asyncio
+webdriver-manager
+python-multipart
